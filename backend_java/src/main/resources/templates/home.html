@@ -10,16 +10,28 @@
 
 <body>
     <header>
-        <h2>Navbar</h2>
+        <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
     </header>
-    <main>
-        <h2>Nome scuola, immagine e breve descrizione</h2>
+    <main class="container my-5">
+        <div class="row align-items-center">
+
+            <div class="col-md-6 text-center mb-4">
+                <img src="/images/Alessia-Cartoon.png" class="img-fluid shadow-lg" alt="Logo della scuola"
+                    style="max-width: 400px; border-radius: 30px;">
+            </div>
+
+            <div class="col-md-6 text-center text-md-start">
+                <h1 class="display-4 fw-bold mb-3">Scuola di Danza di Alessia</h1>
+                <p class="lead text-muted">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas quo obcaecati laborum libero
+                    adipisci. Esse atque, error, sit dolor illo debitis dignissimos repudiandae asperiores inventore
+                    ipsum alias? Numquam, voluptatum rem.
+                </p>
+            </div>
+
+        </div>
     </main>
-    <footer>
-        <h3>
-            Diverse liste con robe a caso
-        </h3>
-    </footer>
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </body>
 
 </html>

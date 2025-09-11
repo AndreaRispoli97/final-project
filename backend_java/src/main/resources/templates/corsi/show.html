@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
+    <title>Corso</title>
+</head>
+
+<body>
+    <header>
+        <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
+    </header>
+    <main class="container py-5" th:object="${corso}">
+        <div class="card shadow-lg border-0 rounded-4 mx-auto" style="max-width: 600px;">
+            <img th:src="*{image}" alt="Corso" class="card-img-top rounded-top-4">
+            <div class="card-body text-center">
+                <h1 class="card-title fw-bold display-5 text-primary">
+                    Corso di: [[*{name}]]
+                </h1>
+                <p class="card-text fs-5 text-muted">
+                    [[*{description}]]
+                </p>
+                <p class="card-text fs-5 text-muted">Retta mensile di: [[*{price}]]$</p>
+            </div>
+        </div>
+    </main>
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+
+</html>

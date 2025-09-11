@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.7/css/bootstrap.min.css}" />
+    <title>Corsi</title>
+</head>
+
+<body>
+    <header>
+        <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
+    </header>
+    <main>
+        <div class="m-3">
+            <h1>Corsi Disponibili</h1>
+            <a th:href="@{/corsi/create}" class="btn btn-primary mt-3 mb-3">Crea un nuovo corso</a>
+            <form th:action="@{/corsi}" method="get" class="mb-3">
+                <input type="text" name="name" placeholder="Cerca Corso" class="form-control" style="width: 500px;">
+                <button type="submit" class="btn btn-primary mt-2">Cerca</button>
+            </form>
+
+        </div>
+        <section class="row m-3">
+            <div th:if="${corsi.size() > 0}" class="row">
+                <div class="col-md-4 mb-4" th:each="corso : ${corsi}" th:object="${corso}">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">[[*{name}]]</h5>
+
+                            <div class="text-center my-3">
+                                <img th:if="*{image}" th:src="*{image}" class="img-fluid" alt="Immagine del corso">
+                                <img th:unless="*{image}" src="https://via.placeholder.com/150" class="img-fluid"
+                                    alt="Immagine di placeholder">
+                            </div>
+
+                            <p class="card-text">[[*{description}]]</p>
+                        </div>
+
+                        <div class="card-footer d-flex justify-content-between">
+                            <a th:href="@{'/corsi/' + *{id}}" class="btn btn-primary btn-sm">Dettagli</a>
+                            <a th:href="@{'/corsi/edit/' + *{id}}" class="btn btn-primary btn-sm">Modifica</a>
+                            <form th:action="@{/corsi/delete/{id}(id=${corso.id})}" method="post"
+                                class="d-inline-block">
+                                <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p th:text="'Nessun corso disponibile...'" th:unless="${corsi.size() > 0}"></p>
+        </section>
+    </main>
+    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+
+</html>
