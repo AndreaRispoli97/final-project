@@ -3,7 +3,7 @@ package org.lessons.spring.backend_java.backend_java.controller;
 import java.util.List;
 
 import org.lessons.spring.backend_java.backend_java.model.Corso;
-import org.lessons.spring.backend_java.backend_java.repository.CorsoRepository;
+import org.lessons.spring.backend_java.backend_java.service.CorsoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,16 +22,16 @@ import jakarta.validation.Valid;
 public class CorsoController {
 
     @Autowired
-    private CorsoRepository corsoRepository;
+    private CorsoService corsoService;
 
     @GetMapping
     public String index(@RequestParam(name = "name", required = false) String name, Model model) {
 
         List<Corso> corsi;
         if (name != null && !name.isEmpty()) {
-            corsi = corsoRepository.findByNameContainingIgnoreCase(name);
+            corsi = corsoService.findByName(name);
         } else {
-            corsi = corsoRepository.findAll();
+            corsi = corsoService.findAll();
         }
 
         model.addAttribute("corsi", corsi);
@@ -42,7 +42,7 @@ public class CorsoController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Integer id, Model model) {
 
-        Corso corso = corsoRepository.findById(id).get();
+        Corso corso = corsoService.getById(id);
         model.addAttribute("corso", corso);
         return "corsi/show";
     }
@@ -50,7 +50,7 @@ public class CorsoController {
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("corso", new Corso());
-        return "/corsi/create";
+        return "/corsi/create-or-edit";
     }
 
     @PostMapping("/create")
@@ -58,15 +58,16 @@ public class CorsoController {
         if (bindingResult.hasErrors()) {
             return "corsi/create";
         }
-        corsoRepository.save(formCorso);
+        corsoService.create(formCorso);
 
         return "redirect:/corsi";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Integer id, Model model) {
-        model.addAttribute("corsi", corsoRepository.findById(id).get());
-        return "corsi/edit";
+        model.addAttribute("corso", corsoService.getById(id));
+        model.addAttribute("edit", true);
+        return "corsi/create-or-edit";
     }
 
     @PostMapping("/edit/{id}")
@@ -74,14 +75,14 @@ public class CorsoController {
         if (bindingResult.hasErrors()) {
             return "corsi/edit";
         }
-        corsoRepository.save(formCorso);
+        corsoService.update(formCorso);
 
         return "redirect:/corsi";
     }
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        corsoRepository.deleteById(id);
+        corsoService.deleteById(id);
         return "redirect:/corsi";
     }
 }
