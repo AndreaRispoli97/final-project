@@ -3,6 +3,7 @@ package org.lessons.spring.backend_java.backend_java.controller;
 import java.util.List;
 
 import org.lessons.spring.backend_java.backend_java.model.Corso;
+import org.lessons.spring.backend_java.backend_java.model.Promo;
 import org.lessons.spring.backend_java.backend_java.service.CorsoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -84,5 +85,15 @@ public class CorsoController {
     public String delete(@PathVariable Integer id) {
         corsoService.deleteById(id);
         return "redirect:/corsi";
+    }
+
+    @GetMapping("/{id}/promos")
+    public String offerta(@PathVariable Integer id, Model model) {
+        Promo promo = new Promo();
+
+        promo.setCorso(corsoService.getById(id));
+
+        model.addAttribute("promo", promo);
+        return "promos/create";
     }
 }

@@ -26,7 +26,7 @@ public class PromoController {
     public String create(@Valid @ModelAttribute("promo") Promo formPromo, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
-            return "/promo/create";
+            return "/promos/create";
         }
 
         promoService.create(formPromo);
