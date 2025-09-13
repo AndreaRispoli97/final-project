@@ -40,22 +40,27 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Data Inizio</th>
                             <th>Data Fine</th>
                             <th>Nome Offerta</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="promo : *{promos}">
-                            <td>[[${promo.id}]]</td>
                             <td>[[${promo.offerDate}]]</td>
                             <td>[[${promo.finishOfferDate}]]</td>
                             <td>[[${promo.titleOffer}]]</td>
                             <td>
                                 <a th:href="@{/promos/edit/{id}(id=${promo.id})}"
                                     class="btn btn-success btn-sm">Aggiorna</a>
+                            </td>
+                            <td>
+                                <form th:action="@{/promos/delete}" method="post">
+                                    <input type="hidden" name="id" th:value="${promo.id}">
+                                    <button type="submit" class="btn btn-warning btn-sm">Elimina</button>
+                                </form>
                             </td>
                         </tr>
                     </tbody>

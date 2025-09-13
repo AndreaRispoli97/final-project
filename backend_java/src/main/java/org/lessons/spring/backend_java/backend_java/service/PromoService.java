@@ -18,4 +18,12 @@ public class PromoService {
     public Promo getById(Integer id) {
         return promoRepository.findById(id).get();
     }
+
+    public void delete(Promo promo) {
+        promoRepository.delete(promo);
+    }
+
+    public void deleteById(Integer id) {
+        promoRepository.deleteById(id);
+    }
 }

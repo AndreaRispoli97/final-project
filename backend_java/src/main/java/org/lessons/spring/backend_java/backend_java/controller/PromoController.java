@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 
@@ -30,7 +31,7 @@ public class PromoController {
         }
 
         promoService.create(formPromo);
-        return "redirect:/corsi";
+        return "redirect:/corsi/" + formPromo.getCorso().getId();
     }
 
     @GetMapping("/edit/{id}")
@@ -50,6 +51,14 @@ public class PromoController {
 
         promoService.create(formPromo);
         return "redirect:/corsi/" + formPromo.getCorso().getId();
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam Integer id) {
+        Promo promoToDelete = promoService.getById(id);
+        Integer corsoId = promoToDelete.getCorso().getId();
+        promoService.deleteById(id);
+        return "redirect:/corsi/" + corsoId;
     }
 
 }
