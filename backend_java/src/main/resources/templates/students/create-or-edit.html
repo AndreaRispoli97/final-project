@@ -45,11 +45,11 @@
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Corsi frequentati:</label>
-                    <div class="single-course form-check" th:each="corso : ${corsi}">
-                        <input type="checkbox" th:id="|corso-${corso.id}|" th:field="${student.corsi}"
-                            th:value="${corso.id}">
-                        <label class="form-check-label" th:for="|corso-${corso.id}|" th:text="${corso.name}"></label>
+                    <label class="form-label">Corsi</label>
+                    <div class="form-check" th:each="corso : ${corsi}">
+                        <input type="checkbox" th:id="|corso-${corso.id}|" th:field="*{corsi}" th:value="${corso.id}"
+                            class="form-check-input">
+                        <label th:for="|corso-${corso.id}|" class="form-check-label" th:text="${corso.name}"></label>
                     </div>
                 </div>
                 <button th:if="${edit}" type="submit" class="btn btn-primary">Modifica dati</button>

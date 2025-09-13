@@ -2,12 +2,14 @@ package org.lessons.spring.backend_java.backend_java.model;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -26,8 +28,9 @@ public class Student {
     @NotBlank(message = "The surname must not be null or empty or blank")
     private String surname;
 
-    @ManyToMany(mappedBy = "students")
-    @JsonManagedReference
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(name = "corso_student", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "corso_id"))
     private List<Corso> corsi;
 
     public List<Corso> getCorsi() {
