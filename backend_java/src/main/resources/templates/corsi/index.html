@@ -15,7 +15,8 @@
     <main>
         <div class="m-3">
             <h1>Corsi Disponibili</h1>
-            <a th:href="@{/corsi/create}" class="btn btn-primary mt-3 mb-3">Crea un nuovo corso</a>
+            <a th:href="@{/corsi/create}" class="btn btn-primary mt-3 mb-3" sec:authorize="hasAuthority('ADMIN')">Crea
+                un nuovo corso</a>
             <form th:action="@{/corsi}" method="get" class="mb-3">
                 <input type="text" name="name" placeholder="Cerca Corso" class="form-control" style="width: 500px;">
                 <button type="submit" class="btn btn-primary mt-2">Cerca</button>
@@ -40,9 +41,10 @@
 
                         <div class="card-footer d-flex justify-content-between">
                             <a th:href="@{'/corsi/' + *{id}}" class="btn btn-primary btn-sm">Dettagli</a>
-                            <a th:href="@{'/corsi/edit/' + *{id}}" class="btn btn-primary btn-sm">Modifica</a>
-                            <form th:action="@{/corsi/delete/{id}(id=${corso.id})}" method="post"
-                                class="d-inline-block">
+                            <a th:href="@{'/corsi/edit/' + *{id}}" class="btn btn-primary btn-sm"
+                                sec:authorize="hasAuthority('ADMIN')">Modifica</a>
+                            <form th:action="@{/corsi/delete/{id}(id=${corso.id})}" method="post" class="d-inline-block"
+                                sec:authorize="hasAuthority('ADMIN')">
                                 <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
                             </form>
                         </div>

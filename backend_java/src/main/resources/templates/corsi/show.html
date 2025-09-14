@@ -24,7 +24,8 @@
                 </p>
                 <p class="card-text fs-5 text-muted">Retta mensile di: [[*{price}]]$</p>
 
-                <a th:href="@{/corsi/{id}/promos(id=*{id})}" class="btn btn-primary btn-sm">Nuova
+                <a th:href="@{/corsi/{id}/promos(id=*{id})}" class="btn btn-primary btn-sm"
+                    sec:authorize="hasAuthority('ADMIN')">Nuova
                     Offerta</a>
             </div>
         </div>
@@ -53,11 +54,11 @@
                             <td>[[${promo.finishOfferDate}]]</td>
                             <td>[[${promo.titleOffer}]]</td>
                             <td>
-                                <a th:href="@{/promos/edit/{id}(id=${promo.id})}"
-                                    class="btn btn-success btn-sm">Aggiorna</a>
+                                <a th:href="@{/promos/edit/{id}(id=${promo.id})}" class="btn btn-success btn-sm"
+                                    sec:authorize="hasAuthority('ADMIN')">Aggiorna</a>
                             </td>
                             <td>
-                                <form th:action="@{/promos/delete}" method="post">
+                                <form th:action="@{/promos/delete}" method="post" sec:authorize="hasAuthority('ADMIN')">
                                     <input type="hidden" name="id" th:value="${promo.id}">
                                     <button type="submit" class="btn btn-warning btn-sm">Elimina</button>
                                 </form>

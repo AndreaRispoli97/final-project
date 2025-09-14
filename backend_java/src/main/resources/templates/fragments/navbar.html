@@ -21,9 +21,15 @@
                             <a class="nav-link" th:href="@{/corsi}">Corsi principali</a>
                         </li>
                         <li class="nav-item">
-                            <a th:href="@{/students}" class="nav-link">Studenti registrati</a>
+                            <a th:href="@{/students}" class="nav-link " sec:authorize="hasAuthority('ADMIN')">Studenti
+                                registrati</a>
                         </li>
                     </ul>
+                </div>
+                <div class=" user-info">
+                    Logged user: <span sec:authentication="name" class="fw-bold me-2"></span>
+                    Roles: <span sec:authentication="principal.authorities" class="fst-italic me-2"></span>
+                    <a class="btn btn-sm btn-outline-primary" href="/logout">Sign out</a>
                 </div>
             </div>
         </nav>
