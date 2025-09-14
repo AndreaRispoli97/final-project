@@ -6,6 +6,7 @@ import org.lessons.spring.backend_java.backend_java.model.Corso;
 import org.lessons.spring.backend_java.backend_java.model.Promo;
 import org.lessons.spring.backend_java.backend_java.service.CorsoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,7 +27,8 @@ public class CorsoController {
     private CorsoService corsoService;
 
     @GetMapping
-    public String index(@RequestParam(name = "name", required = false) String name, Model model) {
+    public String index(@RequestParam(name = "name", required = false) String name, Authentication authentication,
+            Model model) {
 
         List<Corso> corsi;
         if (name != null && !name.isEmpty()) {
@@ -36,7 +38,7 @@ public class CorsoController {
         }
 
         model.addAttribute("corsi", corsi);
-
+        model.addAttribute("username", authentication.getName());
         return "corsi/index";
     }
 
