@@ -6,18 +6,22 @@ function Corsi() {
 
     const [corsi, setCorsi] = useState([]);
     const [search, setSearch] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
     const endpoind = import.meta.env.VITE_API_URL;
 
     const fetchCorsi = (name) => {
         const params = name ? { name: name } : {};
         axios.get(endpoind, { params: params })
             .then(response => {
-                setCorsi(response.data)
+                setCorsi(response.data);
+                setIsLoading(false);
             })
             .catch(error => {
                 console.error("Errore nella chiamata API: ", error);
+                setIsLoading(false);
             });
     };
+
 
     useEffect(() => {
         fetchCorsi('');
@@ -31,6 +35,12 @@ function Corsi() {
         e.preventDefault();
         fetchCorsi(search);
     };
+
+    if (isLoading) {
+        return <div className="container">
+            <img src="/images/IlTrioMistico.png" className="img-fluid" alt="Immagine di placeholder" />
+        </div>;
+    }
 
     return (
         <main>
