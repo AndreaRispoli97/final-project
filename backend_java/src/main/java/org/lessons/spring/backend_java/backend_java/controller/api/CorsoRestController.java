@@ -8,6 +8,7 @@ import org.lessons.spring.backend_java.backend_java.service.CorsoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,19 +16,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/corsi")
+@CrossOrigin(origins = "http://localhost:5173")
 public class CorsoRestController {
 
     @Autowired
     private CorsoService corsoService;
 
     @GetMapping
-    public List<Corso> index() {
-        List<Corso> corsi = corsoService.findAll();
-        return corsi;
+    public List<Corso> index(@RequestParam(name = "name", required = false) String name) {
+        if (name != null && !name.isBlank()) {
+            return corsoService.findByName(name);
+        }
+        return corsoService.findAll();
+
     }
 
     @GetMapping("/{id}")
