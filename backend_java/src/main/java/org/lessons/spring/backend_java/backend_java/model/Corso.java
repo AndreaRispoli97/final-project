@@ -6,7 +6,9 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,8 +44,8 @@ public class Corso {
 
     // relazioni
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "corso")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "corso", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Promo> promos;
 
     public List<Promo> getPromos() {
@@ -55,7 +57,7 @@ public class Corso {
     }
 
     @ManyToMany(mappedBy = "corsi")
-    @JsonManagedReference
+    @JsonIgnore
     private List<Student> studenti;
 
     public List<Student> getStudenti() {
