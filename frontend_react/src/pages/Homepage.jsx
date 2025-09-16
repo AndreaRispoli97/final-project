@@ -13,16 +13,14 @@ function HomePage() {
                         style={{ maxWidth: '400px', borderRadius: '30px' }}
                     />
                 </div>
+                <div className='col-md-6 text-center mb-4'>
+                    <h1 className="display-4 fw-bold mb-3 hero-title">Scuola di Danza</h1>
+                    <p className="lead text-muted hero-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aut vitae optio iusto rerum cupiditate, ratione iure quasi voluptate beatae ad totam soluta nisi officia blanditiis, nemo est ut debitis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aut vitae optio iusto rerum cupiditate, ratione iure quasi voluptate beatae ad totam soluta nisi officia blanditiis, nemo est ut debitis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aut vitae optio iusto rerum cupiditate, ratione iure quasi voluptate beatae ad totam soluta nisi officia blanditiis, nemo est ut debitis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aut vitae optio iusto rerum cupiditate, ratione iure quasi voluptate beatae ad totam soluta nisi officia blanditiis, nemo est ut debitis.</p>
 
-                <div className="col-md-6 text-center text-md-start">
-                    <h1 className="display-4 fw-bold mb-3">Scuola di Danza di Alessia</h1>
-                    <p className="lead text-muted">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas quo obcaecati laborum libero
-                        adipisci. Esse atque, error, sit dolor illo debitis dignissimos repudiandae asperiores inventore
-                        ipsum alias? Numquam, voluptatum rem.
-                    </p>
                 </div>
 
+                <h3 className="fw-bold mb-3 hero-title">Ciao! Sono Alessia!</h3>
+                <p className="lead text-muted hero-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum aut vitae optio iusto rerum cupiditate, ratione iure quasi voluptate beatae ad totam soluta nisi officia blanditiis, nemo est ut debitis.</p>
             </div>
         </main>
     )

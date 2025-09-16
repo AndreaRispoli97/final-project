@@ -12,6 +12,7 @@ function DetailCorsi() {
     useEffect(() => {
         axios.get(`${endpoint}/${id}`)
             .then(response => {
+                console.log(response.data);
                 setCorso(response.data);
                 setIsLoading(false);
             })
@@ -29,51 +30,67 @@ function DetailCorsi() {
 
     return (
         <main className="container py-5">
-            <div className="card shadow-lg border-0 rounded-4 mx-auto" style={{ maxWidth: '600px' }}>
-                <img src={corso.image} alt="Corso" className="card-img-top rounded-top-4" />
-                <div className="card-body text-center">
-                    <h1 className="card-title fw-bold display-5 text-primary">
-                        Corso di: {corso.name}
-                    </h1>
-                    <p className="card-text fs-5 text-muted">
+            <div className="card shadow-lg border-0 rounded-4 mx-auto overflow-hidden custom-card" style={{ maxWidth: '650px' }}>
+                <img
+                    src={corso.image}
+                    alt="Corso"
+                    className="card-img-top"
+                    style={{ maxHeight: '350px', objectFit: 'cover' }}
+                />
+                <div className="card-body text-center p-4">
+                    <h2 className="custom-title text-pink mb-3">
+                        <strong> Corso di: {corso.name}</strong>
+                    </h2>
+                    <p className="custom-text-muted mb-3">
                         {corso.description}
                     </p>
-                    <p className="card-text fs-5 text-muted">Retta mensile di: {corso.price}$</p>
+                    <p className="fs-5 fw-semibold">
+                        Retta mensile: <span className="text-pink">{corso.price}$</span>
+                    </p>
                 </div>
             </div>
 
-            <section className="row m-3">
-                {corso.promos && corso.promos.length > 0 ? (
-                    <div className="col-12">
-                        <h2 className="fw-bold">Offerte</h2>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>Data Inizio</th>
-                                    <th>Data Fine</th>
-                                    <th>Nome Offerta</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {corso.promos.map(promo => (
-                                    <tr key={promo.id}>
-                                        <td>{promo.offerDate}</td>
-                                        <td>{promo.finishOfferDate}</td>
-                                        <td>{promo.titleOffer}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                ) : (
-                    <div className="col-12">
-                        <div className="alert alert-warning">
-                            <h2>Nessuna Offerta per questo corso al momento</h2>
+            <section className="row mt-5">
+                <div className="col-12">
+                    {corso.promos && corso.promos.length > 0 ? (
+                        <div className="card custom-card p-4">
+                            <h2 className="custom-title text-center text-pink mb-4">
+                                Offerte disponibili
+                            </h2>
+                            <div className="table-responsive">
+                                <table className="table custom-table mb-0">
+                                    <thead className="table-light">
+                                        <tr>
+                                            <th className="fw-semibold">Data Inizio</th>
+                                            <th className="fw-semibold">Data Fine</th>
+                                            <th className="fw-semibold">Nome Offerta</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {corso.promos.map(promo => (
+                                            <tr key={promo.id}>
+                                                <td>{promo.offerDate}</td>
+                                                <td>{promo.finishOfferDate}</td>
+                                                <td className="fw-semibold text-pink">{promo.titleOffer}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                )}
+                    ) : (
+                        <div className="alert alert-warning custom-alert">
+                            <h2 className="fw-bold text-pink mb-0">
+                                Nessuna offerta disponibile
+                            </h2>
+                        </div>
+                    )}
+                </div>
             </section>
         </main>
+
+
+
     );
 }
 

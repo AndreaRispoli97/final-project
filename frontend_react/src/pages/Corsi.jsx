@@ -43,51 +43,53 @@ function Corsi() {
     }
 
     return (
-        <main>
-            <div className="m-3">
-                <h1>Corsi Disponibili</h1>
-                <form className="mb-3" onSubmit={handleSearchSubmit}>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Cerca Corso"
-                        className="form-control"
-                        style={{ width: '500px' }}
-                        value={search}
-                        onChange={handleSearchChange}
-                    />
-                    <button type="submit" className="btn btn-primary mt-2">Cerca</button>
-                </form>
-            </div>
+        <main className="container my-5">
+            <h1 className="corsi-title">Corsi Disponibili</h1>
+            <form className="mb-4 search-box d-flex flex-column align-items-center" onSubmit={handleSearchSubmit}>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Cerca Corso"
+                    className="form-control"
+                    style={{ width: '500px' }}
+                    value={search}
+                    onChange={handleSearchChange}
+                />
+                <button type="submit" className="btn btn-primary mt-3 search-btn">Cerca</button>
+            </form>
             <section className="row m-3">
                 {corsi.length > 0 ? (
                     <div className="row">
                         {corsi.map(corso => (
                             <div className="col-md-4 mb-4" key={corso.id}>
-                                <div className="card h-100">
-                                    <div className="card-body">
+                                <div className="card h-100 corsi-card">
+                                    <div className="card-body d-flex flex-column">
                                         <h5 className="card-title text-center">{corso.name}</h5>
                                         <div className="text-center my-3">
-                                            {corso.image ? (
-                                                <img src={corso.image} className="img-fluid" alt="Immagine del corso" />
-                                            ) : (
-                                                <img src="/images/IlTrioMistico.png" className="img-fluid" alt="Immagine di placeholder" />
-                                            )}
+                                            <img
+                                                src={corso.image ? corso.image : "/images/IlTrioMistico.png"}
+                                                className="img-fluid"
+                                                alt="Immagine del corso"
+                                            />
                                         </div>
-                                        <p className="card-text">{corso.description}</p>
+                                        <p className="card-text flex-grow-1">{corso.description}</p>
                                     </div>
-                                    <div className="card-footer d-flex justify-content-between">
-                                        <Link to={`/corsi/${corso.id}`} className="btn btn-primary btn-sm">Dettagli</Link>
+
+                                    <div className="card-footer bg-white text-center">
+                                        <Link to={`/corsi/${corso.id}`} className="btn btn-dettagli btn-sm">
+                                            Dettagli
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
                         ))}
                     </div>
                 ) : (
-                    <p>Nessun corso disponibile...</p>
+                    <p className="text-center text-muted">Nessun corso disponibile...</p>
                 )}
             </section>
-        </main>
+
+        </main >
     );
 }
 

@@ -1,0 +1,196 @@
+/* HEADER */
+
+.navbar-custom {
+    background: linear-gradient(90deg, #f8f9fa, #ffe6f0);
+}
+
+.navbar-custom .nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover {
+    color: #d63384 !important;
+}
+
+.navbar-custom .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #d63384;
+    transition: width 0.3s ease;
+}
+
+.navbar-custom .nav-link:hover::after {
+    width: 100%;
+}
+
+/* MAIN HOMEPAGE */
+
+.hero-title {
+    color: #d63384;
+    text-shadow: 2px 2px #fce4ec;
+}
+
+.hero-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+.hero-img {
+    border-radius: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(214, 51, 132, 0.3);
+}
+
+/* PAGINA CORSI */
+.corsi-title {
+    color: #d63384;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 1px 1px #fce4ec;
+}
+
+.search-box {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-box input {
+    border: 2px solid #d63384;
+    border-radius: 25px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    border-color: #a91d63;
+    box-shadow: 0px 0px 8px rgba(214, 51, 132, 0.3);
+    outline: none;
+}
+
+.search-btn {
+    border-radius: 25px;
+    background-color: #d63384;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #a91d63;
+}
+
+.corsi-card {
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 4px 15px rgba(214, 51, 132, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.corsi-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 25px rgba(214, 51, 132, 0.3);
+}
+
+.corsi-card .card-title {
+    color: #d63384;
+    font-weight: 600;
+}
+
+.corsi-card img {
+    border-radius: 15px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.btn-dettagli {
+    border-radius: 20px;
+    background-color: #d63384;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-dettagli:hover {
+    background-color: #a91d63;
+}
+
+/* Pagina Dettagli */
+
+.custom-card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.custom-title {
+    font-weight: 700;
+    color: var(--bs-primary);
+    margin-bottom: 1rem;
+}
+
+.custom-text-muted {
+    font-size: 1.1rem;
+    color: #6c757d;
+}
+
+.custom-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--bs-success);
+}
+
+.custom-table thead {
+    background-color: #f8f9fa;
+}
+
+.custom-table th {
+    font-weight: 600;
+    text-align: center;
+}
+
+.custom-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.custom-alert {
+    border-radius: 1rem;
+    box-shadow: 0 0.5rem 0.75rem rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 2rem;
+    font-weight: 600;
+}
+
+.text-pink {
+    color: #d63384 !important;
+}
+
+.bg-pink-light {
+    background-color: #fce4ec;
+}
+
+.custom-title.text-pink {
+    border-bottom: 3px solid #d63384;
+}
+
+.custom-table thead.table-light th {
+    color: #d63384;
+}
+
+.text-pink {
+    font-weight: 600;
+}
+
+.custom-alert h2.text-pink {
+    color: #d63384 !important;
+}
