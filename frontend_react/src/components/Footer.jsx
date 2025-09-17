@@ -12,7 +12,7 @@ function Footer() {
                     <hr className="w-100 clearfix d-md-none" />
 
                     <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-                        <h5 className="text-uppercase mb-4 font-weight-bold text-primary">Corsi</h5>
+                        <h5 className="text-uppercase mb-4 font-weight-bold text-primary">Corsi Principali</h5>
                         <p>
                             <a href="http://localhost:5173/corsi/1" className="text-white" style={{ textDecoration: 'none' }}>Propedeutica</a>
                         </p>

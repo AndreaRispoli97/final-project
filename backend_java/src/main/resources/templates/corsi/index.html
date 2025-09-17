@@ -21,40 +21,50 @@
                 <input type="text" name="name" placeholder="Cerca Corso" class="form-control" style="width: 500px;">
                 <button type="submit" class="btn btn-primary mt-2">Cerca</button>
             </form>
-
         </div>
         <section class="row m-3">
             <div th:if="${corsi.size() > 0}" class="row">
-                <div class="col-md-4 mb-4" th:each="corso : ${corsi}" th:object="${corso}">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title text-center">[[*{name}]]</h5>
 
-                            <div class="text-center my-3">
-                                <img th:if="*{image}" th:src="*{image}" class="img-fluid" alt="Immagine del corso">
-                                <img th:unless="*{image}" src="https://via.placeholder.com/150" class="img-fluid"
-                                    alt="Immagine di placeholder">
-                            </div>
 
-                            <p class="card-text">[[*{description}]]</p>
-                        </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nome del Corso</th>
+                            <th>Descrizione</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="corso : ${corsi}" th:object="${corso}">
+                            <td>
+                                <h5>[[*{name}]]</h5>
+                            </td>
+                            <td>
+                                <p>[[*{description}]]</p>
+                            </td>
+                            <td>
+                                [[*{price}]] $
+                            </td>
+                            <td><a th:href="@{'/corsi/' + *{id}}" class="btn btn-primary btn-sm">Dettagli</a></td>
+                            <td><a th:href="@{'/corsi/edit/' + *{id}}" class="btn btn-warning btn-sm"
+                                    sec:authorize="hasAuthority('ADMIN')">Modifica</a></td>
+                            <td>
+                                <form th:action="@{/corsi/delete/{id}(id=${corso.id})}" method="post"
+                                    class="d-inline-block" sec:authorize="hasAuthority('ADMIN')">
+                                    <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
-                        <div class="card-footer d-flex justify-content-between">
-                            <a th:href="@{'/corsi/' + *{id}}" class="btn btn-primary btn-sm">Dettagli</a>
-                            <a th:href="@{'/corsi/edit/' + *{id}}" class="btn btn-primary btn-sm"
-                                sec:authorize="hasAuthority('ADMIN')">Modifica</a>
-                            <form th:action="@{/corsi/delete/{id}(id=${corso.id})}" method="post" class="d-inline-block"
-                                sec:authorize="hasAuthority('ADMIN')">
-                                <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
             <p th:text="'Nessun corso disponibile...'" th:unless="${corsi.size() > 0}"></p>
         </section>
     </main>
-    <th:block th:replace="~{fragments/footer :: footer}"></th:block>
 </body>
 
 </html>

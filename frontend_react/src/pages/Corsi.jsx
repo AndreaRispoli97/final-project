@@ -76,7 +76,7 @@ function Corsi() {
                                     </div>
 
                                     <div className="card-footer bg-white text-center">
-                                        <Link to={`/corsi/${corso.id}`} className="btn btn-dettagli btn-sm">
+                                        <Link to={`/corsi/${corso.id}`} className="btn btn-dettagli btn-sm text-white">
                                             Dettagli
                                         </Link>
                                     </div>
