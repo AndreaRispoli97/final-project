@@ -58,17 +58,44 @@
                                     sec:authorize="hasAuthority('ADMIN')">Aggiorna</a>
                             </td>
                             <td>
-                                <form th:action="@{/promos/delete}" method="post" sec:authorize="hasAuthority('ADMIN')">
-                                    <input type="hidden" name="id" th:value="${promo.id}">
-                                    <button type="submit" class="btn btn-warning btn-sm">Elimina</button>
-                                </form>
+                                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                    th:data-bs-target="'#deletePromoModal' + ${promo.id}"
+                                    sec:authorize="hasAuthority('ADMIN')">
+                                    Elimina
+                                </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
+
+        <div th:each="promo : *{promos}">
+            <div class="modal fade" th:id="'deletePromoModal' + ${promo.id}" tabindex="-1"
+                th:aria-labelledby="'deletePromoModalLabel' + ${promo.id}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" th:id="'deletePromoModalLabel' + ${promo.id}">
+                                Elimina Offerta
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Sei sicuro di voler eliminare l'offerta "<strong>[[${promo.titleOffer}]]</strong>"?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                            <form th:action="@{/promos/delete}" method="post" class="d-inline-block">
+                                <button type="submit" class="btn btn-danger">Elimina Definitivamente</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+    <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
 </body>
 
 </html>

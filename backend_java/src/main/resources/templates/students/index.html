@@ -49,10 +49,10 @@
                                     Studente</a>
                             </td>
                             <td>
-                                <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post"
-                                    style="display: inline;">
-                                    <button type="submit" class="btn btn-danger btn-sm">Elimina</button>
-                                </form>
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    th:data-bs-target="'#deleteStudentModal' + ${student.id}">
+                                    Elimina
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -62,7 +62,35 @@
                 <p th:text="'Stamm nguajat'"></p>
             </div>
         </section>
+
+        <div th:each="student : ${students}">
+            <div class="modal fade" th:id="'deleteStudentModal' + ${student.id}" tabindex="-1"
+                th:aria-labelledby="'deleteStudentModalLabel' + ${student.id}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" th:id="'deleteStudentModalLabel' + ${student.id}">
+                                Elimina Studente
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Sei sicuro di voler eliminare lo studente "<strong>[[${student.name}]]
+                                [[${student.surname}]]</strong>"?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                            <form th:action="@{/students/delete/{id}(id=${student.id})}" method="post"
+                                class="d-inline-block">
+                                <button type="submit" class="btn btn-danger">Elimina Definitivamente</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
+    <script th:src="@{/webjars/bootstrap/5.3.7/js/bootstrap.bundle.min.js}"></script>
 </body>
 
 </html>
