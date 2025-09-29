@@ -26,11 +26,11 @@ function Header() {
                                     Corsi Presenti
                                 </Link>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link className="nav-link fw-bold text-dark px-3" to={'http://localhost:8080/login'}>
                                     <i className="bi bi-person-circle" style={{ fontSize: '24px', marginRight: '5px' }}></i> Login
                                 </Link>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

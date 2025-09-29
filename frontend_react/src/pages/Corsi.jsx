@@ -38,7 +38,8 @@ function Corsi() {
 
     if (isLoading) {
         return <div className="container">
-            <img src="/images/IlTrioMistico.png" className="img-fluid" alt="Immagine di placeholder" />
+            <p>Caricamento in corso...</p>
+            {/* <img src="/images/IlTrioMistico.png" className="img-fluid" alt="Immagine di placeholder" /> */}
         </div>;
     }
 
