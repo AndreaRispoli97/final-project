@@ -30,7 +30,7 @@ public class Corso {
     private Integer id;
 
     @NotBlank(message = "The name must not be null or empty or blank")
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 30, message = "Must have a minimum of 3 characters and a maximum of 30")
     private String name;
 
     private String image;
@@ -39,7 +39,7 @@ public class Corso {
     private String description;
 
     @NotNull(message = "The price must not be null")
-    @Min(value = 0)
+    @Min(value = 0, message = "The price must have a positive number")
     private BigDecimal price;
 
     // relazioni

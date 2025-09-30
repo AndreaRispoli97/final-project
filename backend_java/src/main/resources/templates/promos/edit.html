@@ -25,7 +25,7 @@
 
 
                 <div class="mb-3">
-                    <label class="form-label" for="titleOffer">Title Offer:</label>
+                    <label class="form-label" for="titleOffer">Offerta Titolo:</label>
                     <input class="form-control" type="text" id="titleOffer" th:field="*{titleOffer}"
                         th:errorClass="is-invalid">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('titleOffer')}">
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="offerDate">Offer Date:</label>
+                    <label class="form-label" for="offerDate">Inizio Offerta:</label>
                     <input class="form-control" type="date" id="offerDate" th:field="*{offerDate}"
                         th:errorClass="is-invalid">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('offerDate')}">
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label" for="finishOfferDate">Finish Offer Date:</label>
+                    <label class="form-label" for="finishOfferDate">Fine Offerta:</label>
                     <input class="form-control" type="date" id="finishOfferDate" th:field="*{finishOfferDate}"
                         th:errorClass="is-invalid">
                     <div class="invalid-feedback" th:if="${#fields.hasErrors('finishOfferDate')}">

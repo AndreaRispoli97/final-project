@@ -12,7 +12,7 @@ function DetailCorsi() {
     useEffect(() => {
         axios.get(`${endpoint}/${id}`)
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 setCorso(response.data);
                 setIsLoading(false);
             })
@@ -31,6 +31,7 @@ function DetailCorsi() {
 
     return (
         <main className="container py-5">
+
             <div className="card shadow-lg border-0 rounded-4 mx-auto overflow-hidden custom-card" style={{ maxWidth: '650px' }}>
                 <img
                     src={corso.image}
