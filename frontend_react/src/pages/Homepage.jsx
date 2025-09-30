@@ -10,7 +10,7 @@ function HomePage() {
                         src="/images/Alessia-Cartoon.png"
                         className="img-fluid shadow-lg"
                         alt="Logo della scuola"
-                        style={{ maxWidth: '400px', borderRadius: '30px' }}
+                        style={{ borderRadius: '30px' }}
                     />
                 </div>
                 <div className='col-md-6 text-center mb-4'>
