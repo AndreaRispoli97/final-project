@@ -24,7 +24,7 @@ Tutte le entità hanno implementate le operazioni CRUD.
 HTML, CSS, JavaScript, React, Axios, Node.js, Java, Spring Security, Spring Boot, Spring Data JPA, Hibernate, Maven, Thymeleaf.
 
 ## 🔗 Links
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/andrea-rispoli-b4a4a4388)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andrea-rispoli-b4a4a4388/)
 ## 🚀 Come iniziare
 
 1. **Clona il repository**
